@@ -4,5 +4,10 @@
     "require": {
         "php": ">=5.3",
         "ext-curl": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Yproximite\\Sendinblue\\": "lib"
+        }
     }
 }
