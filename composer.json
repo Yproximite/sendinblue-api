@@ -1,0 +1,8 @@
+{
+    "name": "yproximite/sendinblue-api",
+    "type": "library",
+    "require": {
+        "php": ">=5.3",
+        "ext-curl": "*"
+    }
+}
