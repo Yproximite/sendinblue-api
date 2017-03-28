@@ -16,13 +16,13 @@ class Sendinblue
         $this->base_url = 'https://in-automate.sendinblue.com/p';
         $this->api_key  = $api_key;
         //create a session cookie
-        if (!array_key_exists('session_id', $_COOKIE)) {
+        if (!array_key_exists('sendinblue_session_id', $_COOKIE)) {
             $url        = (isset($_SERVER['HTTPS']) ? "https" : "http")."://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
             $parsed     = parse_url($url);
             $host_parts = explode('.', $parsed['host']);
             $domain     = implode('.', array_slice($host_parts, count($host_parts) - 2));
             //store email_id cookie
-            setcookie("session_id", $_COOKIE['session_id'] = md5(uniqid(time())), time() + 86400, "/", $domain);
+            setcookie("sendinblue_session_id", $_COOKIE['sendinblue_session_id'] = md5(uniqid(time())), time() + 86400, "/", $domain);
         }
 
     }
@@ -59,8 +59,8 @@ class Sendinblue
         if (!array_key_exists('url', $data)) {
             $data['url'] = $url;
         }
-        if (isset($_COOKIE['session_id']) && $_COOKIE['session_id'] != '') {
-            $data['session_id'] = $_COOKIE['session_id'];
+        if (isset($_COOKIE['sendinblue_session_id']) && $_COOKIE['sendinblue_session_id'] != '') {
+            $data['session_id'] = $_COOKIE['sendinblue_session_id'];
         }
         $parsed     = parse_url($url);
         $host_parts = explode('.', $parsed['host']);
@@ -91,8 +91,8 @@ class Sendinblue
                 $data['email_id'] = $_COOKIE['email_id'];
             }
         }
-        if (isset($_COOKIE['session_id']) && $_COOKIE['session_id'] != '') {
-            $data['session_id'] = $_COOKIE['session_id'];
+        if (isset($_COOKIE['sendinblue_session_id']) && $_COOKIE['sendinblue_session_id'] != '') {
+            $data['session_id'] = $_COOKIE['sendinblue_session_id'];
         }
 
         //store email cookie
@@ -117,8 +117,8 @@ class Sendinblue
         if (isset($_COOKIE['email_id']) && $_COOKIE['email_id'] != '') {
             $data['email_id'] = $_COOKIE['email_id'];
         }
-        if (isset($_COOKIE['session_id']) && $_COOKIE['session_id'] != '') {
-            $data['session_id'] = $_COOKIE['session_id'];
+        if (isset($_COOKIE['sendinblue_session_id']) && $_COOKIE['sendinblue_session_id'] != '') {
+            $data['session_id'] = $_COOKIE['sendinblue_session_id'];
         }
         //referrer
         if (!array_key_exists('referrer', $data) && array_key_exists('HTTP_REFERER', $_SERVER)) {
@@ -156,8 +156,8 @@ class Sendinblue
         if (isset($_COOKIE['email_id']) && $_COOKIE['email_id'] != '') {
             $data['email_id'] = $_COOKIE['email_id'];
         }
-        if (isset($_COOKIE['session_id']) && $_COOKIE['session_id'] != '') {
-            $data['session_id'] = $_COOKIE['session_id'];
+        if (isset($_COOKIE['sendinblue_session_id']) && $_COOKIE['sendinblue_session_id'] != '') {
+            $data['session_id'] = $_COOKIE['sendinblue_session_id'];
         }
         $url = (isset($_SERVER['HTTPS']) ? "https" : "http")."://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
         if (!array_key_exists('url', $data)) {
